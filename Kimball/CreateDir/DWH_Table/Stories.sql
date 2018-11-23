@@ -1,4 +1,4 @@
-CREATE TABLE `test_kinball`.`Stories` (
+CREATE TABLE `Kimball_DWH`.`Stories` (
   `Stories_key` INT NOT NULL AUTO_INCREMENT,
   `Stories_number` INT NULL,
   `Term_number` INT NULL,

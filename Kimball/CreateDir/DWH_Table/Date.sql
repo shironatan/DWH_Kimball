@@ -1,4 +1,4 @@
-CREATE TABLE `test_kinball`.`Date` (
+CREATE TABLE `Kimball_DWH`.`Date` (
   `Date_key` INT NOT NULL AUTO_INCREMENT,
   `Month` INT NULL,
   `Day` INT NULL,

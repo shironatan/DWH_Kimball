@@ -1,4 +1,4 @@
-CREATE TABLE `test_kinball`.`Sale` (
+CREATE TABLE `Kimball_DWH`.`Sale` (
   `Date_key` INT NOT NULL,
   `Category_key` INT NOT NULL,
   `Stories_key` INT NOT NULL,
@@ -11,21 +11,21 @@ CREATE TABLE `test_kinball`.`Sale` (
   INDEX `fk_Sale_4_idx` (`Official_tweet_key` ASC),
   CONSTRAINT `fk_Sale_1`
     FOREIGN KEY (`Date_key`)
-    REFERENCES `test_kinball`.`Date` (`Date_key`)
+    REFERENCES `Kimball_DWH`.`Date` (`Date_key`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Sale_2`
     FOREIGN KEY (`Category_key`)
-    REFERENCES `test_kinball`.`Category` (`Category_key`)
+    REFERENCES `Kimball_DWH`.`Category` (`Category_key`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Sale_3`
     FOREIGN KEY (`Stories_key`)
-    REFERENCES `test_kinball`.`Stories` (`Stories_key`)
+    REFERENCES `Kimball_DWH`.`Stories` (`Stories_key`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Sale_4`
     FOREIGN KEY (`Official_tweet_key`)
-    REFERENCES `test_kinball`.`Official_tweet` (`Official_tweet_key`)
+    REFERENCES `Kimball_DWH`.`Official_tweet` (`Official_tweet_key`)
     ON DELETE CASCADE
     ON UPDATE CASCADE);

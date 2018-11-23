@@ -1,4 +1,4 @@
-CREATE TABLE `test_kinball`.`Category` (
+CREATE TABLE `Kimball_DWH`.`Category` (
   `Category_key` INT NOT NULL AUTO_INCREMENT,
   `Category1_code` VARCHAR(45) NULL,
   `Category1_name` VARCHAR(45) NULL,

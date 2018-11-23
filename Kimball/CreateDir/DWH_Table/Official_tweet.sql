@@ -1,4 +1,4 @@
-CREATE TABLE `test_kinball`.`Official_tweet` (
+CREATE TABLE `Kimball_DWH`.`Official_tweet` (
   `Official_tweet_key` INT NOT NULL AUTO_INCREMENT,
   `Official_tweet_number` VARCHAR(45) NULL,
   `Tweet` VARCHAR(45) NULL,
