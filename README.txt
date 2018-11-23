@@ -6,14 +6,14 @@ OS : Ubuntu 18.04.1 LTS
 MYSQL : MYSQL 5.7.24-0ubuntu0.18.04.1
 
 ##使い方
-$ git clone https://github.com/shironatan/DWH_Kimball
+$ sudo git clone https://github.com/shironatan/DWH_Kimball
 
 １．DB構築と構築時間を測定
 $ pwd
  ...../DWH_Kimball/Kimball
 $ cd CreateDir
-$ time sudo ./Create.sh
- DWHをInmonモデルで構築...
+$ sudo ./Main.sh
+ DWHをKimballモデルで構築...
  my.cnfファイルを新規作成
  UserName : MYSQLのユーザアカウントを入力
  Password : 対応するパスワードを入力
