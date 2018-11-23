@@ -1,25 +1,5 @@
 #!/bin/bash
 
-#my.cnfファイルが存在するか
-Pass(){
-	FILE="my.cnf"
-	if [[ -f $FILE ]]; then
-		Connect
-	else
-		echo "my.cnfファイルを新規作成"
-		echo "[client]" > $FILE
-		read -p "UserName : " UserName
-		echo "user = $UserName" >> $FILE
-		read -s -p "Password : " Password
-		echo "password = $Password" >> $FILE
-		echo
-		read -p "HostName : " HostName
-		echo "host = $HostName" >> $FILE
-		echo "my.cnfファイル新規作成完了"
-		Connect
-	fi
-}
-
 #MYSQL接続テスト
 Connect(){
 	echo "MYSQLへ接続中..."
@@ -89,8 +69,7 @@ fi
 
 
 Main(){
-echo "DWHをKimballモデルで構築..."
-Pass
+Connect
 Createtest
 DWH
 echo "構築完了"
