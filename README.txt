@@ -25,12 +25,17 @@ $ pwd
  ...../DWH_Kimball/Kimball
 $ cd Query
 $ sudo ./Query.sh
- SQLFile名 : ファイル名を入力(1.sqlなど)
- my.cnfファイルを新規作成
- UserName : MYSQLのユーザアカウントを入力
- Password : 対応するパスワードを入力
- HostName : ホスト名を入力(localhostなど)
+ SQLファイル名 : ファイル名を入力(1.sqlなど)
+ ユーザーを新規作成・変更
+ ユーザー名 : MYSQLのユーザアカウントを入力
+ パスワード : 対応するパスワードを入力
+ ホスト名 : ホスト名を入力(localhostなど)
+ 変更完了
+ /* ログインユーザー */
+ hoge
+ ユーザー名を指定[変更:change] : hoge
  ..
+ 
  
 ３．各DBのサイズを測定
 $ pwd
@@ -45,7 +50,9 @@ $ sudo ./Size.sh
 
 [ほかにも]
 ここでつくられるデータベースは2017年のアニメ作品の売上数値を、原作情報、放送日情報、公式ツイート情報、話数情報から分析できるように構築されています。
+
 /* データベース構造 */
+
 ・Saleテーブル（売上数値）
 Date_key : Dateテーブルへの外部キーであり、主キーです。
 Category_key : Categoryテーブルへの外部キーであり、主キーです。
@@ -53,22 +60,26 @@ Stories_key : Storiesテーブルへの外部キーであり、主キーです�
 Official_tweet_key : Official_tweetテーブルへの外部キーであり、主キーです。
 Sale_number : 作品数
 Sale_number_count : 売上数値合計
+
 ・Categoryテーブル（原作情報）
 Category_key : 主キーです。
 Category1_code : 原作大分類コード
 Category1_name : 原作大分類名（漫画，ラノベ，アニオリなど）
 Category2_code : 原作小分類オード
 Category2_name : 原作小分類名（講談社，電撃文庫，小説など）
+
 ・Dateテーブル（放送日情報）
 Date_key : 主キーです。
 Month : 放送年
 Day : 放送月
 Day_week : 放送曜日
 Term : クール（冬，春など）
+
 ・Official_tweetテーブル（公式ツイート情報）
 Official_tweet_key : 主キーです。
 Official_tweet_number : 公式ツイート数
 Tweet : 公式ツイート数端数
+
 ・Storiesテーブル（話数情報）
 Stories_key : 主キーです。
 Stories_number : 話数
@@ -85,6 +96,7 @@ $ sudo ./Inner_join.sh
 ユーザー名を指定[変更:change]：任意
 データベース名を入力：Kimball_DWH
 メインテーブルを入力：Sale
+Saleテーブル結合条件項目名[無し/終了:q]：q
 結合テーブルを入力：Date
 Saleテーブル結合項目名：Date_key
 Dateテーブル結合項目名：Date_key
@@ -94,11 +106,9 @@ Saleテーブル結合項目名：Category_key
 Categoryテーブル結合項目名：Category_key
 Categoryテーブル結合条件項目名[無し/終了:q]：q
 結合テーブルを入力：q
-Saleテーブル抽出項目名[終了:q]：option
-集合関数付項目名入力：SUM(Sale_number)
+Saleテーブル抽出項目名[終了:q]:SUM(Sale_number)
 SUM(Sale_number)項目の表示名[項目名と同一:q]：作品数
-Saleテーブル抽出項目名[終了:q]：option
-集合関数付項目名入力：TRUNCATE(AVG(Sale_number_count),0)
+Saleテーブル抽出項目名[終了:q]：TRUNCATE(AVG(Sale_number_count),0)
 TRUNCATE(AVG(Sale_number_count),0)項目の表示名[項目名と同一:q]：売上数値平均
 Saleテーブル抽出項目名[終了:q]：q
 Dateテーブル抽出項目名[終了:q]：Term
