@@ -118,7 +118,18 @@ Categoryテーブル抽出項目名[終了:q]：Category1_name
 Category1_name項目の表示名[項目名と同一:q]：原作大分類
 Categoryテーブル抽出項目名[終了:q]：q
 
-#売上数値平均の降順で表示させるようにsqlをかえます。
+##こんな感じのsqlをつくることができます。
+$ cat ./hoge.sql
+use Kimball_DWH;
+SELECT Term AS クール, Category1_name AS 原作大分類, SUM(Sale_number) AS 作品数, TRUNCATE(AVG(Sale_number_count),0) AS 売上数値平均
+FROM Sale
+INNER JOIN Date
+ ON Sale.Date_key = Date.Date_key
+INNER JOIN Category
+ ON Category.Category_key = Category.Category_key
+GROUP BY クール, 原作大分類;
+
+##売上数値平均の降順で表示させるようにsqlをかえます。
 $ sudo ./Sort.sh
 （入力以外の表示は省略）
 ファイル名を指定(拡張子あり)：hoge.sql
@@ -126,11 +137,23 @@ ORDER BYに指定する項目を優先度が高いものから選んでくださ
 DESC/ASC：DESC
 ORDER BYに指定する項目を優先度が高いものから選んでください[終了:q]：q
 
-#SQLを実行します。
+##こんな感じにsqlをかえることができます。
+$ cat hoge.sql
+use Kimball_DWH;
+SELECT Term AS クール, Category1_name AS 原作大分類, SUM(Sale_number) AS 作品数, TRUNCATE(AVG(Sale_number_count),0) AS 売上数値平均
+FROM Sale
+INNER JOIN Date
+ ON Sale.Date_key = Date.Date_key
+INNER JOIN Category
+ ON Category.Category_key = Category.Category_key
+GROUP BY クール, 原作大分類
+ORDER BY 売上数値平均 DESC;
+
+##SQLを実行します。
 $ sudo ./Query.sh
 （入力以外の表示は省略）
 SQLFile名：hoge.sql
 （（クエリの実行結果が表示されます））
 
-こんな感じで簡単に（？）分析と表示ができます。
+
 
